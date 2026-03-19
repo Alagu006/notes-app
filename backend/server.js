@@ -24,14 +24,31 @@ console.log('Environment variables loaded successfully');
 console.log('Database URL:', process.env.DATABASE_URL.substring(0, 30) + '...'); // Log partial URL for security
 
 // Middleware
+// Replace your current CORS middleware with this enhanced version
 app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-    'https://notes-app-chi-blue.vercel.app/' // Replace with your Vercel URL
-  ],
-  credentials: true
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'http://localhost:3000',
+      'http://127.0.0.1:3000',
+      'https://notes-app-chi-blue.vercel.app'
+    ];
+    
+    // Allow requests with no origin (like mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) === -1) {
+      console.log('CORS blocked origin:', origin); // Helpful for debugging
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true,
+  optionsSuccessStatus: 200 // Some legacy browsers choke on 204
 }));
+
+// Add preflight OPTIONS handling for all routes
+app.options('*', cors()); // Enable preflight for all routes
 app.use(express.json());
 
 // Database connection with Neon-specific configuration
@@ -124,7 +141,8 @@ app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'ok', 
     message: 'Server is running',
-    database: pool.otalCount ? 'connected' : 'checking'
+    database: pool ? 'connected' : 'checking',
+    timestamp: new Date().toISOString()
   });
 });
 
