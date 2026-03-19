@@ -1,5 +1,9 @@
-// API Configuration
-const API_URL = "http://localhost:5000/api"; // Replace with your backend URL
+// API Configuration - Use config.js
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? CONFIG.DEV_API_URL
+    : CONFIG.PROD_API_URL;
+
+console.log('Using API URL:', API_URL);
 
 // State
 let currentUser = null;
