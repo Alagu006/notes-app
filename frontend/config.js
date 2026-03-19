@@ -5,8 +5,3 @@ const CONFIG = {
     // For production (update this after deploying backend)
     PROD_API_URL: 'https://https://notes-app-backend-gmiz.onrender.com/api'
 };
-
-// Auto-detect environment
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? CONFIG.DEV_API_URL
-    : CONFIG.PROD_API_URL;
