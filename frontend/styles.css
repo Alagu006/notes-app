@@ -1,0 +1,438 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #764ba2;
+    margin-bottom: 10px;
+    font-size: 2.8rem;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.user-section {
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 5px;
+}
+
+.btn-primary {
+    background-color: #764ba2;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #5a3a7e;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #545b62;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 400px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #666;
+}
+
+.close:hover {
+    color: #333;
+}
+
+/* Main App Styles */
+.project-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.notes-app-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 1100px) {
+    .notes-app-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.notes-input-section, .notes-list-section {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #444;
+    font-size: 1.1rem;
+}
+
+input[type="text"], input[type="email"], input[type="password"], textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus {
+    outline: none;
+    border-color: #764ba2;
+}
+
+textarea {
+    min-height: 200px;
+    resize: vertical;
+}
+
+.notes-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.save-btn {
+    background-color: #764ba2;
+    color: white;
+}
+
+.save-btn:hover {
+    background-color: #5a3a7e;
+    transform: translateY(-2px);
+}
+
+.clear-btn {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.clear-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.download-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.download-btn:hover {
+    background-color: #3d8b40;
+    transform: translateY(-2px);
+}
+
+.delete-all-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.delete-all-btn:hover {
+    background-color: #d32f2f;
+}
+
+.notes-list {
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.note-item {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #764ba2;
+    transition: transform 0.2s ease;
+}
+
+.note-item:hover {
+    transform: translateX(5px);
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.note-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.note-date {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.note-content {
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    max-height: 100px;
+    overflow: hidden;
+    position: relative;
+}
+
+.note-content.expanded {
+    max-height: none;
+}
+
+.note-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.note-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.view-btn {
+    background-color: #2196F3;
+    color: white;
+}
+
+.view-btn:hover {
+    background-color: #0b7dda;
+}
+
+.edit-btn {
+    background-color: #FF9800;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #e68a00;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #d32f2f;
+}
+
+.expand-btn {
+    background: none;
+    border: none;
+    color: #764ba2;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0;
+    margin-top: 5px;
+}
+
+.stats-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #764ba2;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.no-notes {
+    text-align: center;
+    padding: 40px;
+    color: #777;
+    font-size: 1.2rem;
+}
+
+.error-message {
+    color: #dc3545;
+    background-color: #ffe6e6;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: none;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: white;
+    opacity: 0.9;
+    font-size: 0.9rem;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .notes-actions {
+        flex-direction: column;
+    }
+    
+    .action-btn, .note-btn {
+        width: 100%;
+    }
+}
+
+/* Modal styles */
+.modal {
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Edit mode highlight */
+.notes-input-section.editing {
+    border: 2px solid #FF9800;
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.3);
+}
+
+/* Note content expanded state */
+.note-content.expanded {
+    max-height: none;
+}
+
+/* Improve note display */
+.note-content {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
