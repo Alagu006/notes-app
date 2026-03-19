@@ -28,7 +28,7 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-    'https://notes-app-one-beige.vercel.app/' // Replace with your Vercel URL
+    'https://notes-app-chi-blue.vercel.app/' // Replace with your Vercel URL
   ],
   credentials: true
 }));
