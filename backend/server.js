@@ -24,7 +24,14 @@ console.log('Environment variables loaded successfully');
 console.log('Database URL:', process.env.DATABASE_URL.substring(0, 30) + '...'); // Log partial URL for security
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'https://your-app.vercel.app' // Replace with your Vercel URL
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Database connection with Neon-specific configuration
